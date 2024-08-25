@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Flask Web Application</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Advanced Flask Web Application</h1>
+        <form method="POST">
+            <textarea name="data" rows="6" placeholder='Enter JSON data (e.g., ["M", "1", "334"])'></textarea><br>
+            
+            <div class="filter-section">
+                <label for="filter_type">Filter Type:</label>
+                <select id="filter_type" name="filter_type">
+                    <option value="all">All</option>
+                    <option value="numbers">Numbers</option>
+                    <option value="alphabets">Alphabets</option>
+                    <option value="combined">Combined (Numbers + Alphabets)</option>
+                    <option value="special_characters">Special Characters</option>
+                </select><br>
+                
+                <label for="min_number">Minimum Number:</label>
+                <input type="number" id="min_number" name="min_number"><br>
+                
+                <label for="max_number">Maximum Number:</label>
+                <input type="number" id="max_number" name="max_number"><br>
+                
+                <label for="only_lowercase">Show Only Lowercase Alphabets:</label>
+                <select id="only_lowercase" name="only_lowercase">
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                </select><br>
+                
+                <label for="include_uppercase">Include Uppercase Alphabets:</label>
+                <select id="include_uppercase" name="include_uppercase">
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                </select><br>
+                
+                <label for="include_digits">Include Digits:</label>
+                <select id="include_digits" name="include_digits">
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                </select><br>
+                
+                <label for="exclude_special">Exclude Special Characters:</label>
+                <select id="exclude_special" name="exclude_special">
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                </select><br>
+                
+                <label for="filter_char">Filter by Character:</label>
+                <input type="text" id="filter_char" name="filter_char" placeholder="Character to filter by"><br>
+                
+                <label for="filter_length">Filter by Length:</label>
+                <input type="number" id="filter_length" name="filter_length" placeholder="Length of the string"><br>
+            </div>
+            
+            <button type="submit">Submit</button>
+        </form>
+        <div id="response">
+            {% if result %}
+                <h2>Response:</h2>
+                <pre>{{ result | tojson(indent=2) }}</pre>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
